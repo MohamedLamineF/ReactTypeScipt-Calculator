@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Container, Paper, styled, Grid, Button } from "@mui/material";
 import { GridOperationButton } from "./GridOperationButton";
 import { GridDigitButton } from "./GridDigitButton";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 const ResultContainer = styled("div")(({ theme }) => ({
   width: "100%",
@@ -96,7 +98,7 @@ function App() {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="xs">
       <CalculatorBase elevation={3}>
         <Grid container spacing={1}>
           <Grid item xs={12}>
@@ -107,6 +109,7 @@ function App() {
               operation={"AC"}
               selectOperation={clear}
               selectedOperation={operation}
+              backGColor="rgba(153, 153, 255, .5)"
             />
             <GridOperationButton
               operation={"C"}
@@ -143,6 +146,7 @@ function App() {
               operation={"-"}
               selectOperation={selectOperation}
               selectedOperation={operation}
+              opIcon={<RemoveIcon />}
             />
           </Grid>
 
@@ -154,6 +158,7 @@ function App() {
               operation={"+"}
               selectOperation={selectOperation}
               selectedOperation={operation}
+              opIcon={<AddIcon />}
             />
           </Grid>
           <Grid item container columnSpacing={2}>
@@ -166,7 +171,7 @@ function App() {
             <GridDigitButton digit={"."} enterDigit={setDigit} />
             <Grid item xs={3}>
               <Button variant="contained" fullWidth onClick={equal}>
-                =
+                O_O
               </Button>
             </Grid>
           </Grid>
