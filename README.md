@@ -1,73 +1,89 @@
-# React + TypeScript + Vite
+# 🧮 React TypeScript Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, elegant calculator demo app showcasing modern React development practices.
 
-Currently, two official plugins are available:
+## 📖 About
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This is a **demo calculator application** I created when I first started learning **TypeScript**. Recently, I've modernized and refactored it to use:
 
-## React Compiler
+- **React 19** — Latest React features and improvements
+- **Tailwind CSS** — Beautiful, utility-first styling
+- **Vite** — Lightning-fast development and build setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features
 
-## Expanding the ESLint configuration
+- ✅ Basic arithmetic operations (+, −, ×, ÷)
+- ✅ Percentage calculations
+- ✅ Sign toggle (+/−)
+- ✅ Clear (AC) and delete (C) functions
+- ✅ Responsive, dark-themed UI
+- ✅ Smooth, modern interactions
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js 16+ and npm
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+
+```bash
+# Clone the repository
+git clone <repo-url>
+cd React_simple_calculator
+
+# Install dependencies
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Start the dev server
+npm run dev
 ```
+
+The app will be available at **http://localhost:5173**
+
+### Build for Production
+
+```bash
+# Create an optimized production build
+npm run build
+
+# Preview the production build
+npm run preview
+```
+
+## 📦 Tech Stack
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| React | 19.2.4+ | UI framework |
+| TypeScript | 5.9+ | Type safety |
+| Vite | 8.0+ | Build tool & dev server |
+| Tailwind CSS | 4.0+ | Styling |
+
+## 📁 Project Structure
+
+```
+src/
+├── App.tsx                    # Main calculator component
+├── GridDigitButton.tsx        # Digit button component
+├── GridOperationButton.tsx   # Operation button component
+├── index.tsx                  # Entry point
+├── index.css                  # Tailwind CSS imports
+├── theme.tsx                  # Theme configuration (legacy)
+└── setupTests.ts             # Test configuration
+```
+
+## 🎨 Design
+
+The calculator features a **modern dark theme** with:
+- Deep gray background (`bg-gray-950`)
+- Sleek calculator card (`bg-gray-800`)
+- Gray digit buttons with hover effects
+- Violet-tinted operation buttons
+- Responsive grid layout
+
+Perfect for learning or as a foundation for more complex projects!
