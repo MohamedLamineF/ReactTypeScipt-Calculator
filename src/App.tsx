@@ -1,24 +1,6 @@
-import React, { useState } from "react";
-import { Container, Paper, styled, Grid, Button } from "@mui/material";
+import { useState } from "react";
 import { GridOperationButton } from "./GridOperationButton";
 import { GridDigitButton } from "./GridDigitButton";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-
-const ResultContainer = styled("div")(({ theme }) => ({
-  width: "100%",
-  height: "2em",
-  padding: theme.spacing(2),
-  fontSize: "3em",
-  textAlign: "right",
-  overflow: "hidden",
-}));
-
-const CalculatorBase = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(2),
-  marginTop: theme.spacing(4),
-  borderRadius: 15,
-}));
 
 function App() {
   const [currentValue, setCurrentValue] = useState("0");
@@ -98,86 +80,93 @@ function App() {
   };
 
   return (
-    <Container maxWidth="xs">
-      <CalculatorBase elevation={3}>
-        <Grid container spacing={1}>
-          <Grid item xs={12}>
-            <ResultContainer>{currentValue}</ResultContainer>
-          </Grid>
-          <Grid item container columnSpacing={2}>
-            <GridOperationButton
-              operation={"AC"}
-              selectOperation={clear}
-              selectedOperation={operation}
-              backGColor="rgba(153, 153, 255, .5)"
-            />
-            <GridOperationButton
-              operation={"C"}
-              selectOperation={del}
-              selectedOperation={operation}
-            />
-            <GridOperationButton
-              operation={"%"}
-              selectOperation={percent}
-              selectedOperation={operation}
-            />
-            <GridOperationButton
-              operation={"/"}
-              selectOperation={selectOperation}
-              selectedOperation={operation}
-            />
-          </Grid>
-          <Grid item container columnSpacing={2}>
-            <GridDigitButton digit={"7"} enterDigit={setDigit} />
-            <GridDigitButton digit={"8"} enterDigit={setDigit} />
-            <GridDigitButton digit={"9"} enterDigit={setDigit} />
-            <GridOperationButton
-              operation={"*"}
-              selectOperation={selectOperation}
-              selectedOperation={operation}
-            />
-          </Grid>
+    <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
+      <div className="bg-gray-800 rounded-3xl p-5 shadow-2xl w-72">
+        {/* Display */}
+        <div className="text-right text-4xl font-light text-white px-3 py-4 overflow-hidden truncate">
+          {currentValue}
+        </div>
 
-          <Grid item container columnSpacing={2}>
-            <GridDigitButton digit={"4"} enterDigit={setDigit} />
-            <GridDigitButton digit={"5"} enterDigit={setDigit} />
-            <GridDigitButton digit={"6"} enterDigit={setDigit} />
-            <GridOperationButton
-              operation={"-"}
-              selectOperation={selectOperation}
-              selectedOperation={operation}
-              opIcon={<RemoveIcon />}
-            />
-          </Grid>
+        {/* Row 1: AC, C, %, / */}
+        <div className="grid grid-cols-4 gap-2 mt-2">
+          <GridOperationButton
+            operation={"AC"}
+            selectOperation={clear}
+            selectedOperation={operation}
+            isHighlighted
+          />
+          <GridOperationButton
+            operation={"C"}
+            selectOperation={del}
+            selectedOperation={operation}
+          />
+          <GridOperationButton
+            operation={"%"}
+            selectOperation={percent}
+            selectedOperation={operation}
+          />
+          <GridOperationButton
+            operation={"/"}
+            selectOperation={selectOperation}
+            selectedOperation={operation}
+          />
+        </div>
 
-          <Grid item container columnSpacing={2}>
-            <GridDigitButton digit={"1"} enterDigit={setDigit} />
-            <GridDigitButton digit={"2"} enterDigit={setDigit} />
-            <GridDigitButton digit={"3"} enterDigit={setDigit} />
-            <GridOperationButton
-              operation={"+"}
-              selectOperation={selectOperation}
-              selectedOperation={operation}
-              opIcon={<AddIcon />}
-            />
-          </Grid>
-          <Grid item container columnSpacing={2}>
-            <GridOperationButton
-              operation={"+/-"}
-              selectOperation={minus}
-              selectedOperation={operation}
-            />
-            <GridDigitButton digit={"0"} enterDigit={setDigit} />
-            <GridDigitButton digit={"."} enterDigit={setDigit} />
-            <Grid item xs={3}>
-              <Button variant="contained" fullWidth onClick={equal}>
-                O_O
-              </Button>
-            </Grid>
-          </Grid>
-        </Grid>
-      </CalculatorBase>
-    </Container>
+        {/* Row 2: 7, 8, 9, * */}
+        <div className="grid grid-cols-4 gap-2 mt-2">
+          <GridDigitButton digit={"7"} enterDigit={setDigit} />
+          <GridDigitButton digit={"8"} enterDigit={setDigit} />
+          <GridDigitButton digit={"9"} enterDigit={setDigit} />
+          <GridOperationButton
+            operation={"*"}
+            selectOperation={selectOperation}
+            selectedOperation={operation}
+          />
+        </div>
+
+        {/* Row 3: 4, 5, 6, - */}
+        <div className="grid grid-cols-4 gap-2 mt-2">
+          <GridDigitButton digit={"4"} enterDigit={setDigit} />
+          <GridDigitButton digit={"5"} enterDigit={setDigit} />
+          <GridDigitButton digit={"6"} enterDigit={setDigit} />
+          <GridOperationButton
+            operation={"-"}
+            selectOperation={selectOperation}
+            selectedOperation={operation}
+          />
+        </div>
+
+        {/* Row 4: 1, 2, 3, + */}
+        <div className="grid grid-cols-4 gap-2 mt-2">
+          <GridDigitButton digit={"1"} enterDigit={setDigit} />
+          <GridDigitButton digit={"2"} enterDigit={setDigit} />
+          <GridDigitButton digit={"3"} enterDigit={setDigit} />
+          <GridOperationButton
+            operation={"+"}
+            selectOperation={selectOperation}
+            selectedOperation={operation}
+          />
+        </div>
+
+        {/* Row 5: +/-, 0, ., = */}
+        <div className="grid grid-cols-4 gap-2 mt-2">
+          <GridOperationButton
+            operation={"+/-"}
+            selectOperation={minus}
+            selectedOperation={operation}
+          />
+          <GridDigitButton digit={"0"} enterDigit={setDigit} />
+          <GridDigitButton digit={"."} enterDigit={setDigit} />
+          <button
+            className="group bg-violet-600 hover:bg-violet-500 active:bg-violet-700 text-white font-semibold rounded-full py-3 transition-colors cursor-pointer"
+            onClick={equal}
+          >
+            <span className="group-hover:hidden">=</span>
+            <span className="hidden group-hover:inline">^人^</span>
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 

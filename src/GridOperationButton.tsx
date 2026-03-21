@@ -1,41 +1,34 @@
-import { Grid, Button, styled } from "@mui/material";
-import { ReactNode } from "react";
+import React from "react";
+
 interface GridOperationButtonProps {
   operation: string;
   selectOperation: (operation: string) => void;
   selectedOperation: string;
-  xs?: number;
-  backGColor?: string;
-  opIcon?: ReactNode;
+  isHighlighted?: boolean;
 }
-
-const StyledButton = styled(Button)<{
-  selected: boolean;
-  bgColor: string;
-}>((props) => ({
-  backgroundColor: props.bgColor,
-  borderColor: props.selected ? "fff" : "rgba(153, 153, 255,0.5)",
-}));
 
 export const GridOperationButton: React.FC<GridOperationButtonProps> = ({
   operation,
   selectOperation,
   selectedOperation,
-  xs = 3,
-  backGColor = "rgba(153, 153, 255, .1)",
-  opIcon,
+  isHighlighted = false,
 }) => {
+  const isSelected = selectedOperation === operation;
+
   return (
-    <Grid item xs={xs}>
-      <StyledButton
-        fullWidth
-        variant="outlined"
-        onClick={() => selectOperation(operation)}
-        selected={selectedOperation === operation}
-        bgColor={backGColor}
-      >
-        {opIcon ? opIcon : operation}
-      </StyledButton>
-    </Grid>
+    <button
+      className={[
+        "font-medium py-3 rounded-full border transition-colors cursor-pointer text-white",
+        isHighlighted
+          ? "bg-violet-500/60 hover:bg-violet-400/60 border-violet-400/70"
+          : "bg-violet-950/40 hover:bg-violet-900/50 border-violet-500/40",
+        isSelected ? "border-white ring-1 ring-white" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      onClick={() => selectOperation(operation)}
+    >
+      {operation}
+    </button>
   );
 };
